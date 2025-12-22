@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation files('libs/heroes_task_lib-1.0-SNAPSHOT.jar')
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly  'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.named('jar') {
+    dependsOn classes
+    archiveFileName = 'heroes_task.jar'
+    destinationDirectory = file('heroes/jars')
+}
