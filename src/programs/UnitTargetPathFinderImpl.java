@@ -137,8 +137,9 @@ public class UnitTargetPathFinderImpl implements UnitTargetPathFinder {
 
         while (cameFrom[x][y] != null) {
             path.push(new Edge(x, y));
-            x = cameFrom[x][y].getX();
-            y = cameFrom[x][y].getY();
+            Edge predecessor = cameFrom[x][y];  // Используем временную переменную
+            x = predecessor.getX();
+            y = predecessor.getY();
         }
 
         return new ArrayList<>(path);
